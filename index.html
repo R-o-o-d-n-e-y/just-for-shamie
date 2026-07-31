@@ -63,6 +63,7 @@
             box-shadow: 0 20px 40px rgba(190, 18, 60, 0.15);
             cursor: pointer;
             transition: transform 0.4s ease;
+            overflow: visible;
         }
 
         .envelope:hover {
@@ -80,8 +81,8 @@
             border-right: 160px solid transparent;
             border-top: 130px solid #e2d2c1;
             transform-origin: top;
-            transition: transform 0.6s ease 0.2s, z-index 0.2s 0.4s;
-            z-index: 5;
+            transition: transform 0.5s ease 0.5s, z-index 0.1s 0.5s;
+            z-index: 6;
         }
 
         .flap-left {
@@ -94,7 +95,7 @@
             border-bottom: 110px solid transparent;
             border-left: 170px solid #ecdccb;
             border-bottom-left-radius: 12px;
-            z-index: 4;
+            z-index: 5;
         }
 
         .flap-right {
@@ -107,7 +108,7 @@
             border-bottom: 110px solid transparent;
             border-right: 170px solid #ecdccb;
             border-bottom-right-radius: 12px;
-            z-index: 4;
+            z-index: 5;
         }
 
         .flap-bottom {
@@ -121,7 +122,7 @@
             border-bottom: 120px solid #dfcfbe;
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
-            z-index: 4;
+            z-index: 5;
         }
 
         /* Sceau en forme de cœur */
@@ -138,8 +139,8 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 12px rgba(190, 18, 60, 0.4);
-            z-index: 6;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            z-index: 7;
+            transition: opacity 0.3s ease 0.6s, transform 0.3s ease 0.6s;
             color: white;
             font-size: 22px;
         }
@@ -147,46 +148,48 @@
         /* Aperçu de la lettre à l'intérieur */
         .letter-preview {
             position: absolute;
-            bottom: 10px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
             width: 290px;
             height: 190px;
-            background: #fff;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 3;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+            background: transparent;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            z-index: 2;
             overflow: hidden;
-            padding: 6px;
-            border: 1px solid #e5e7eb;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, z-index 0.01s linear 0.1s;
         }
 
-         .letter-preview img {
+        .letter-preview img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 0;
         }
 
-
-        /* Animations d'ouverture */
+        /* Animations à l'ouverture (.open) */
         .envelope.open .flap-top {
             transform: rotateX(180deg);
             z-index: 1;
+            transition: transform 0.5s ease, z-index 0.1s;
         }
 
         .envelope.open .heart-seal {
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.5);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .envelope.open .letter-preview {
-            transform: translate(-50%, -180px);
+            transform: translate(-50%, -150px);
             z-index: 10;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, z-index 0.01s linear 0.6s;
         }
 
-        /* Modal Plein écran pour afficher la lettre en grand */
+        /* Modal Plein écran */
         .modal {
             position: fixed;
             inset: 0;
@@ -250,10 +253,11 @@
             line-height: 1;
         }
 
+        /* MODIFICATIONS ICI : Suppression complète des marges autour de l'image */
         .modal-body {
-            padding: 12px;
+            padding: 0;
             overflow-y: auto;
-            background: #fdfbf7;
+            background: transparent;
             display: flex;
             justify-content: center;
         }
@@ -261,7 +265,9 @@
         .modal-body img {
             width: 100%;
             height: auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: block;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .modal-footer {
@@ -309,7 +315,7 @@
 
             <!-- Image de la lettre dans l'enveloppe -->
             <div class="letter-preview">
-                <img src="image.JPG" alt="Aperçu de la lettre">
+                <img src="image.png" alt="Aperçu de la lettre">
             </div>
         </div>
     </div>
@@ -323,8 +329,7 @@
             </div>
             
             <div class="modal-body">
-                <!-- La lettre enregistrée sous le nom image.png -->
-                <img src="image.JPG" alt="Lettre d'amour pour Shamie">
+                <img src="image.png" alt="Lettre d'amour pour Shamie">
             </div>
 
             <div class="modal-footer">
@@ -347,10 +352,9 @@
             envelope.classList.add('open');
             header.style.opacity = '0';
 
-            // Ouverture de la modale avec la lettre après l'animation
             setTimeout(() => {
                 modal.classList.add('active');
-            }, 1200);
+            }, 1300);
         }
 
         function closeModal() {
@@ -363,10 +367,12 @@
             setTimeout(() => {
                 envelope.classList.remove('open');
                 header.style.opacity = '1';
-                isOpen = false;
-            }, 400);
+                
+                setTimeout(() => {
+                    isOpen = false;
+                }, 1000);
+            }, 300);
         }
     </script>
 </body>
 </html>
-
