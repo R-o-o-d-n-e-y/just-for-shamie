@@ -22,6 +22,7 @@
             justify-content: center;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* En-tête */
@@ -292,11 +293,30 @@
         .close-modal-btn:hover {
             background: #be123c;
         }
+
+        /* Style des paillettes et cœurs flottants */
+        .sparkle-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Lecteur audio caché (Remplace musique.mp3 par le nom de ta chanson) -->
+    <!-- Lecteur audio caché -->
     <audio id="bgMusic" src="die-for-you.mp3" preload="auto"></audio>
 
     <!-- En-tête principal -->
@@ -344,6 +364,25 @@
         let isOpen = false;
         const music = document.getElementById('bgMusic');
 
+        // Génération des paillettes et cœurs qui volent
+        function createSparkles() {
+            const items = ['✨', '💖', '❤️', '🌸', '⭐'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'sparkle-particle';
+                    particle.innerText = items[Math.floor(Math.random() * items.length)];
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    particle.style.opacity = Math.random();
+                    document.body.appendChild(particle);
+
+                    setTimeout(() => particle.remove(), 6000);
+                }, i * 120);
+            }
+        }
+
         function openEnvelope() {
             if (isOpen) return;
             isOpen = true;
@@ -360,6 +399,9 @@
 
             envelope.classList.add('open');
             header.style.opacity = '0';
+
+            // Déclenche l'envol des paillettes
+            createSparkles();
 
             setTimeout(() => {
                 modal.classList.add('active');
