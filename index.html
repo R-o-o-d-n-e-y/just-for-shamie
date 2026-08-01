@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pour Shamie ❤️</title>
+    
     <style>
-        /* Styles de base et réinitialisation */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,76 +13,81 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #fce7f3 0%, #f3e8ff 50%, #ffe4e6 100%);
+            font-family: Georgia, 'Baskerville Old Face', Garamond, 'Times New Roman', serif;
+            background: radial-gradient(circle at center, #fff0f5 0%, #fce4ec 50%, #f8bbd0 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            overflow-x: hidden;
+            overflow: hidden;
+            position: relative;
         }
 
         /* En-tête */
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            transition: opacity 0.5s ease;
+            margin-bottom: 25px;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            z-index: 10;
         }
 
         .header h1 {
-            color: #be123c;
-            font-size: 2.2rem;
-            font-family: 'Georgia', serif;
-            margin-bottom: 8px;
+            color: #9f1239;
+            font-size: 2.8rem;
+            font-weight: normal;
+            font-style: italic;
+            text-shadow: 0 2px 4px rgba(159, 18, 57, 0.1);
+            margin-bottom: 6px;
         }
 
         .header p {
             color: #881337;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         /* Enveloppe */
         .envelope-wrapper {
             perspective: 1000px;
             margin: 20px 0;
+            z-index: 10;
         }
 
         .envelope {
             position: relative;
-            width: 320px;
-            height: 220px;
-            background-color: #f3e8de;
+            width: 340px;
+            height: 230px;
+            background-color: #fdf8f5;
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
-            box-shadow: 0 20px 40px rgba(190, 18, 60, 0.15);
+            box-shadow: 0 20px 50px rgba(159, 18, 57, 0.2), 0 0 20px rgba(255, 255, 255, 0.8);
             cursor: pointer;
-            transition: transform 0.4s ease;
-            overflow: visible;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .envelope:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
         }
 
-        /* Rabats de l'enveloppe */
+        /* Rabats */
         .flap-top {
             position: absolute;
             top: 0;
             left: 0;
             width: 0;
             height: 0;
-            border-left: 160px solid transparent;
-            border-right: 160px solid transparent;
-            border-top: 130px solid #e2d2c1;
+            border-left: 170px solid transparent;
+            border-right: 170px solid transparent;
+            border-top: 135px solid #ebdcd0;
             transform-origin: top;
-            transition: transform 0.5s ease 0.5s, z-index 0.1s 0.5s;
+            transition: transform 0.6s ease 0.4s, z-index 0.1s 0.4s;
             z-index: 6;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.05));
         }
 
         .flap-left {
@@ -91,9 +96,9 @@
             left: 0;
             width: 0;
             height: 0;
-            border-top: 110px solid transparent;
-            border-bottom: 110px solid transparent;
-            border-left: 170px solid #ecdccb;
+            border-top: 115px solid transparent;
+            border-bottom: 115px solid transparent;
+            border-left: 180px solid #f4e6d9;
             border-bottom-left-radius: 12px;
             z-index: 5;
         }
@@ -104,9 +109,9 @@
             right: 0;
             width: 0;
             height: 0;
-            border-top: 110px solid transparent;
-            border-bottom: 110px solid transparent;
-            border-right: 170px solid #ecdccb;
+            border-top: 115px solid transparent;
+            border-bottom: 115px solid transparent;
+            border-right: 180px solid #f4e6d9;
             border-bottom-right-radius: 12px;
             z-index: 5;
         }
@@ -117,60 +122,57 @@
             left: 0;
             width: 0;
             height: 0;
-            border-left: 160px solid transparent;
-            border-right: 160px solid transparent;
-            border-bottom: 120px solid #dfcfbe;
+            border-left: 170px solid transparent;
+            border-right: 170px solid transparent;
+            border-bottom: 125px solid #e8d7c8;
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
             z-index: 5;
         }
 
-        /* Sceau en forme de cœur */
+        /* Sceau en cire */
         .heart-seal {
             position: absolute;
-            top: 110px;
+            top: 115px;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 46px;
-            height: 46px;
-            background: linear-gradient(135deg, #e11d48, #be123c);
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #fb7185, #be123c, #881337);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(190, 18, 60, 0.4);
+            box-shadow: 0 4px 15px rgba(136, 19, 55, 0.5), inset 0 2px 4px rgba(255,255,255,0.4);
             z-index: 7;
-            transition: opacity 0.3s ease 0.6s, transform 0.3s ease 0.6s;
-            color: white;
+            transition: opacity 0.4s ease 0.4s, transform 0.4s ease 0.4s;
+            color: #fff;
             font-size: 22px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        /* Aperçu de la lettre à l'intérieur */
+        /* Aperçu de la lettre */
         .letter-preview {
             position: absolute;
             top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 290px;
-            height: 190px;
-            background: transparent;
-            padding: 0;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
+            width: 300px;
+            height: 200px;
             z-index: 2;
             overflow: hidden;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, z-index 0.01s linear 0.1s;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s, z-index 0.01s linear 0.2s;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .letter-preview img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0;
         }
 
-        /* Animations à l'ouverture (.open) */
+        /* Ouverture */
         .envelope.open .flap-top {
             transform: rotateX(180deg);
             z-index: 1;
@@ -179,30 +181,29 @@
 
         .envelope.open .heart-seal {
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0.5);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translate(-50%, -50%) scale(0.3);
         }
 
         .envelope.open .letter-preview {
-            transform: translate(-50%, -150px);
+            transform: translate(-50%, -160px);
             z-index: 10;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s, z-index 0.01s linear 0.6s;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s, z-index 0.01s linear 0.6s;
         }
 
-        /* Modal Plein écran */
+        /* Modale */
         .modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
+            background: rgba(15, 2, 8, 0.75);
+            backdrop-filter: blur(10px);
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
         }
 
         .modal.active {
@@ -211,101 +212,123 @@
         }
 
         .modal-content {
-            background: white;
-            border-radius: 16px;
-            max-width: 520px;
+            background: #fffdfa;
+            border-radius: 20px;
+            max-width: 550px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 85vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transform: scale(0.9);
-            transition: transform 0.4s ease;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(225, 29, 72, 0.2);
+            transform: scale(0.85) translateY(20px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(251, 113, 133, 0.3);
         }
 
         .modal.active .modal-content {
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
         .modal-header {
-            background: #fff1f2;
-            padding: 14px 20px;
+            background: linear-gradient(to right, #fff1f2, #ffe4e6);
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #ffe4e6;
+            border-bottom: 1px solid #fecdd3;
         }
 
         .modal-header h2 {
-            color: #be123c;
-            font-size: 1.1rem;
-            font-family: 'Georgia', serif;
+            color: #9f1239;
+            font-size: 1.5rem;
+            font-weight: normal;
+            font-style: italic;
         }
 
         .close-btn {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 28px;
             color: #9f1239;
             cursor: pointer;
-            padding: 0 5px;
-            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.15);
         }
 
         .modal-body {
             padding: 0;
             overflow-y: auto;
-            background: transparent;
             display: flex;
             justify-content: center;
+            background: #fff;
         }
 
         .modal-body img {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 0;
-            box-shadow: none;
         }
 
         .modal-footer {
-            padding: 12px;
-            background: white;
+            padding: 14px;
+            background: #fffdfa;
             text-align: center;
-            border-top: 1px solid #f3f4f6;
+            border-top: 1px solid #ffe4e6;
         }
 
         .close-modal-btn {
-            background: #e11d48;
+            background: linear-gradient(135deg, #e11d48, #be123c);
             color: white;
             border: none;
-            padding: 10px 24px;
-            border-radius: 20px;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-family: inherit;
+            font-size: 1rem;
             font-weight: 600;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
-            transition: background 0.2s ease;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.35);
+            transition: all 0.3s ease;
         }
 
         .close-modal-btn:hover {
-            background: #be123c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.5);
+        }
+
+        /* Pétales / Cœurs flottants */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Lecteur audio caché (Remplace musique.mp3 par le nom de ta chanson) -->
     <audio id="bgMusic" src="die-for-you.mp3" preload="auto"></audio>
 
-    <!-- En-tête principal -->
     <div class="header" id="header">
         <h1>Pour Shamie ❤️</h1>
         <p>Touche l'enveloppe pour l'ouvrir ✨</p>
     </div>
 
-    <!-- Structure de l'enveloppe -->
     <div class="envelope-wrapper">
         <div class="envelope" id="envelope" onclick="openEnvelope()">
             <div class="flap-top"></div>
@@ -315,14 +338,12 @@
             
             <div class="heart-seal">❤️</div>
 
-            <!-- Image de la lettre dans l'enveloppe -->
             <div class="letter-preview">
                 <img src="image.JPG" alt="Aperçu de la lettre">
             </div>
         </div>
     </div>
 
-    <!-- Fenêtre modale qui affiche la lettre entière -->
     <div class="modal" id="letterModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -344,6 +365,24 @@
         let isOpen = false;
         const music = document.getElementById('bgMusic');
 
+        function createHearts() {
+            const hearts = ['❤️', '💖', '🌹', '✨', '💕'];
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-particle';
+                    heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    heart.style.opacity = Math.random();
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 6000);
+                }, i * 150);
+            }
+        }
+
         function openEnvelope() {
             if (isOpen) return;
             isOpen = true;
@@ -352,18 +391,19 @@
             const header = document.getElementById('header');
             const modal = document.getElementById('letterModal');
 
-            // Lance la musique depuis le début dès le clic
-            music.currentTime = 0; 
-            music.play().catch(error => {
-                console.log("Erreur de lecture audio : ", error);
-            });
+            music.currentTime = 0;
+            music.volume = 1;
+            music.play().catch(e => console.log("Erreur audio :", e));
 
             envelope.classList.add('open');
             header.style.opacity = '0';
+            header.style.transform = 'translateY(-10px)';
+
+            createHearts();
 
             setTimeout(() => {
                 modal.classList.add('active');
-            }, 1300);
+            }, 1200);
         }
 
         function closeModal() {
@@ -371,19 +411,26 @@
             const envelope = document.getElementById('envelope');
             const header = document.getElementById('header');
 
-            // Arrêt net de la musique immédiatement
-            music.pause();
-            music.currentTime = 0;
+            let fadeInterval = setInterval(() => {
+                if (music.volume > 0.1) {
+                    music.volume -= 0.1;
+                } else {
+                    music.pause();
+                    music.currentTime = 0;
+                    clearInterval(fadeInterval);
+                }
+            }, 50);
 
             modal.classList.remove('active');
 
             setTimeout(() => {
                 envelope.classList.remove('open');
                 header.style.opacity = '1';
+                header.style.transform = 'translateY(0)';
                 
                 setTimeout(() => {
                     isOpen = false;
-                }, 1000);
+                }, 800);
             }, 300);
         }
     </script>
