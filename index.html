@@ -296,7 +296,7 @@
 </head>
 <body>
 
-    <!-- Lecteur audio caché -->
+    <!-- Lecteur audio caché (Remplace musique.mp3 par le nom de ta chanson) -->
     <audio id="bgMusic" src="die-for-you.mp3" preload="auto"></audio>
 
     <!-- En-tête principal -->
@@ -317,7 +317,7 @@
 
             <!-- Image de la lettre dans l'enveloppe -->
             <div class="letter-preview">
-                <img src="image.png" alt="Aperçu de la lettre">
+                <img src="image.JPG" alt="Aperçu de la lettre">
             </div>
         </div>
     </div>
@@ -331,7 +331,7 @@
             </div>
             
             <div class="modal-body">
-                <img src="image.png" alt="Lettre d'amour pour Shamie">
+                <img src="image.JPG" alt="Lettre d'amour pour Shamie">
             </div>
 
             <div class="modal-footer">
@@ -352,6 +352,7 @@
             const header = document.getElementById('header');
             const modal = document.getElementById('letterModal');
 
+            // Lance la musique depuis le début dès le clic
             music.currentTime = 0; 
             music.play().catch(error => {
                 console.log("Erreur de lecture audio : ", error);
@@ -370,7 +371,7 @@
             const envelope = document.getElementById('envelope');
             const header = document.getElementById('header');
 
-            // Arrêt net et immédiat de la musique
+            // Arrêt net de la musique immédiatement
             music.pause();
             music.currentTime = 0;
 
